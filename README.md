@@ -1,7 +1,13 @@
 <a name="readme-top"></a>
 # Business rules engine
 
-Java impl of business rules engine and API example. 
+## Overview
+
+Rules Engine is a library for abstracting business logic (rules, policies) from the system.
+It provides a simple way to separate your rules and your application core logic,
+thus ensuring that any changes to the rules will not affect the main system.
+
+This engine supports dynamic sandboxed expressions powered by https://github.com/twineworks/tweakflow
 
 ### Prerequisites:
 
