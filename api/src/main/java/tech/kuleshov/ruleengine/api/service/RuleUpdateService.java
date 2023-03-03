@@ -15,6 +15,6 @@ public class RuleUpdateService {
 
   public void updateRule(RuleDefinition rd) {
     // todo: checks
-    ruleRepository.save(rd);
+    ruleRepository.save(rd.getWorkflowId(), rd);
   }
 }

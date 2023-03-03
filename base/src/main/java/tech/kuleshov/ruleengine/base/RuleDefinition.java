@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RuleDefinition {
 
+  private String workflowId;
   private String id;
   @Builder.Default private Map<String, VariableDefinition> variables = new HashMap<>();
   private String when;

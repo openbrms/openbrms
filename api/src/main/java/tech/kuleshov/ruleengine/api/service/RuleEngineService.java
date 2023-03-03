@@ -6,6 +6,7 @@ import com.twineworks.tweakflow.lang.values.DictValue;
 import com.twineworks.tweakflow.lang.values.Value;
 import com.twineworks.tweakflow.lang.values.Values;
 import java.util.*;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
@@ -20,20 +21,30 @@ import tech.kuleshov.ruleengine.domain.VariableType;
 public class RuleEngineService {
 
   private static final ObjectMapper mapper = new ObjectMapper();
-  private final RuleRetriveService ruleRetriveService;
+  private final RuleRetrieveService ruleRetrieveService;
 
-  public RuleEngineService(RuleRetriveService ruleRetriveService) {
-    this.ruleRetriveService = ruleRetriveService;
+  public RuleEngineService(RuleRetrieveService ruleRetrieveService) {
+    this.ruleRetrieveService = ruleRetrieveService;
   }
 
-  public EvalResultDto eval(String id, Map<String, Object> params) {
-    RuleDefinition rd = ruleRetriveService.findById(id).orElseThrow();
+  public EvalResultDto eval(String workflowId, String ruleId, Map<String, Object> params) {
+    RuleDefinition rd =
+        ruleRetrieveService.findRuleDefinitionById(workflowId, ruleId).orElseThrow();
+    return eval(rd, params);
+  }
+
+  public List<EvalResultDto> eval(String workflowId, Map<String, Object> params) {
+    List<RuleDefinition> rd = ruleRetrieveService.findAllByWorkflowId(workflowId);
+    return rd.stream().map(m -> eval(workflowId, m.getId(), params)).collect(Collectors.toList());
+  }
+
+  public EvalResultDto eval(RuleDefinition rd, Map<String, Object> params) {
     Map<String, Value> input = prepareInput(params, rd);
     prepareDependentInputs(input, rd, params);
     RuleExecutor ruleExecutor = new RuleExecutor();
     Value result = ruleExecutor.execute(rd, input).orElse(null);
     if (result == null) {
-      return EvalResultDto.builder().fits(false).build();
+      return EvalResultDto.builder().ruleId(rd.getId()).fits(false).build();
     }
 
     Object value = result.value();
@@ -108,6 +119,7 @@ public class RuleEngineService {
     }
 
     return EvalResultDto.builder()
+        .ruleId(rd.getId())
         .type(VariableType.from(result.type().toString()))
         .value(value)
         .fits(true)
@@ -121,13 +133,13 @@ public class RuleEngineService {
       VariableDefinition vd = entry.getValue();
       if (!Strings.isEmpty(vd.getRuleId())) {
         if (vd.getVar() == null) {
-          EvalResultDto r = eval(vd.getRuleId(), params);
+          EvalResultDto r = eval(rd.getWorkflowId(), vd.getRuleId(), params);
           if (r.isFits()) {
             Value value = Values.make(r.getValue());
             input.put(key, value);
           }
         } else {
-          EvalResultDto r = eval(vd.getRuleId(), params);
+          EvalResultDto r = eval(rd.getWorkflowId(), vd.getRuleId(), params);
           if (r.isFits()) {
             Map<String, Object> dict = mapper.convertValue(r.getValue(), new TypeReference<>() {});
             Value value = Values.make(dict.get(vd.getVar()));

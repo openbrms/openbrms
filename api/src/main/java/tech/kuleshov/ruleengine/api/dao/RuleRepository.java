@@ -1,9 +1,6 @@
 package tech.kuleshov.ruleengine.api.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Repository;
 import tech.kuleshov.ruleengine.base.RuleDefinition;
@@ -11,17 +8,23 @@ import tech.kuleshov.ruleengine.base.RuleDefinition;
 @Repository
 public class RuleRepository {
 
-  private static final Map<String, RuleDefinition> rules = new ConcurrentHashMap<>();
+  private static final Map<String, Map<String, RuleDefinition>> rules = new ConcurrentHashMap<>();
 
-  public List<RuleDefinition> findAll() {
-    return new ArrayList<>(rules.values());
+  public void save(String workflowId, RuleDefinition rule) {
+    if (!rules.containsKey(workflowId)) {
+      rules.put(workflowId, new ConcurrentHashMap<>());
+    }
+
+    Map<String, RuleDefinition> workflowMap = rules.get(workflowId);
+    workflowMap.put(rule.getId(), rule);
   }
 
-  public Optional<RuleDefinition> findById(String id) {
-    return Optional.ofNullable(rules.get(id));
+  public List<RuleDefinition> findAllByWorkflowId(String workflowId) {
+    return new ArrayList<>(rules.getOrDefault(workflowId, new HashMap<>()).values());
   }
 
-  public void save(RuleDefinition rule) {
-    rules.put(rule.getId(), rule);
+  public Optional<RuleDefinition> findByWorkflowIdAndId(String workflowId, String ruleId) {
+    Map<String, RuleDefinition> workflowMap = rules.getOrDefault(workflowId, new HashMap<>());
+    return Optional.ofNullable(workflowMap.get(ruleId));
   }
 }
