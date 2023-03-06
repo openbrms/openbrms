@@ -30,7 +30,7 @@ public class RuleController {
 
   @GetMapping("/{workflowId}")
   public List<RuleDefinition> listRoles(@PathVariable String workflowId) {
-    return ruleRetrieveService.findAllByWorkflowId(workflowId);
+    return ruleRetrieveService.listRulesByWorkflowId(workflowId);
   }
 
   @GetMapping("/{workflowId}/{ruleId}")

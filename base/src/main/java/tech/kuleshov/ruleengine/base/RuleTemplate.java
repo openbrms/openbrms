@@ -4,7 +4,7 @@ import com.twineworks.tweakflow.lang.values.Value;
 import java.util.Map;
 import java.util.Set;
 
-public interface Rule {
+public interface RuleTemplate {
 
   Set<String> getDependencies();
 

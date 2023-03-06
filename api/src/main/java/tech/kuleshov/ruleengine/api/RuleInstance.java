@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-import tech.kuleshov.ruleengine.base.Rule;
 import tech.kuleshov.ruleengine.base.RuleDefinition;
+import tech.kuleshov.ruleengine.base.RuleTemplate;
 import tech.kuleshov.ruleengine.base.VariableDefinition;
 
-public class RuleInstance implements Rule {
+public class RuleInstance implements RuleTemplate {
 
   private final RuleDefinition ruleDefinition;
 

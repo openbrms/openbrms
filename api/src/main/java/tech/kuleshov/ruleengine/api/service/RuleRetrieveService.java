@@ -15,7 +15,7 @@ public class RuleRetrieveService {
     this.ruleRepository = ruleRepository;
   }
 
-  public List<RuleDefinition> findAllByWorkflowId(String workflowId) {
+  public List<RuleDefinition> listRulesByWorkflowId(String workflowId) {
     return ruleRepository.findAllByWorkflowId(workflowId);
   }
 
