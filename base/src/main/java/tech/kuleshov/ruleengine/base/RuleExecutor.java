@@ -3,21 +3,40 @@ package tech.kuleshov.ruleengine.base;
 import com.twineworks.tweakflow.lang.TweakFlow;
 import com.twineworks.tweakflow.lang.parse.ParseResult;
 import com.twineworks.tweakflow.lang.values.Value;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class RuleExecutor {
 
   public Optional<Value> execute(RuleDefinition rd, Map<String, Value> input) {
-    String code = prepare(rd.getWhen(), input);
-    ParseResult r = TweakFlow.parse(code);
-    if (r.isError()) throw new RuntimeException();
-    Value value = TweakFlow.evaluate(code);
+    List<String> missingVariables = checkPrerequisites(rd, input);
+    if (missingVariables.size() > 0) {
+      if (rd.isRequired()) {
+        throw new RuntimeException("Missing variables: " + String.join(",", missingVariables));
+      } else {
+        return Optional.empty();
+      }
+    }
+    String whenSource = prepare(rd.getWhen(), input);
+    ParseResult r = TweakFlow.parse(whenSource);
+    if (r.isError()) {
+      throw new RuntimeException(rd.getWorkflowId() + "/" + rd.getId());
+    }
+    Value value = TweakFlow.evaluate(whenSource);
     boolean isApplicable = value.bool();
     if (!isApplicable) return Optional.empty();
 
-    Value result = TweakFlow.evaluate(prepare(rd.getThen(), input));
+    String thenSource = prepare(rd.getThen(), input);
+    System.out.println(thenSource);
+    Value result = TweakFlow.evaluate(thenSource);
     return Optional.of(result);
+  }
+
+  private List<String> checkPrerequisites(RuleDefinition rd, Map<String, Value> input) {
+    Set<String> rdKeySet = rd.getVariables().keySet();
+    Set<String> inputKeySet = input.keySet();
+    List<String> result = new ArrayList<>(rdKeySet);
+    result.removeAll(inputKeySet);
+    return result;
   }
 
   private String prepare(String when, Map<String, Value> input) {

@@ -34,7 +34,7 @@ public class RuleEngineService {
   }
 
   public List<EvalResultDto> eval(String workflowId, Map<String, Object> params) {
-    List<RuleDefinition> rd = ruleRetrieveService.findAllByWorkflowId(workflowId);
+    List<RuleDefinition> rd = ruleRetrieveService.listRulesByWorkflowId(workflowId);
     return rd.stream().map(m -> eval(workflowId, m.getId(), params)).collect(Collectors.toList());
   }
 

@@ -18,4 +18,5 @@ public class RuleDefinition {
   @Builder.Default private Map<String, VariableDefinition> variables = new HashMap<>();
   private String when;
   private String then;
+  @Builder.Default private boolean required = true;
 }

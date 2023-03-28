@@ -1,18 +1,27 @@
 package tech.kuleshov.ruleengine.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import java.util.Set;
 
 public enum VariableType {
-  NUMERIC,
-  STRING,
-  BOOLEAN,
-  DICT;
+  NUMERIC(Set.of("numeric", "long")),
+  STRING(Set.of("string")),
+  BOOLEAN(Set.of("boolean")),
+  DICT(Set.of("dict"));
+
+  private final Set<String> types;
+
+  VariableType(Set<String> types) {
+    this.types = types;
+  }
 
   public static VariableType from(String value) {
     if (value != null) {
       for (VariableType vt : values()) {
-        if (vt.name().equalsIgnoreCase(value)) {
-          return vt;
+        for (String t : vt.getTypes()) {
+          if (t.equalsIgnoreCase(value)) {
+            return vt;
+          }
         }
       }
     }
@@ -22,5 +31,9 @@ public enum VariableType {
   @JsonCreator
   public VariableType create(String value) {
     return from(value);
+  }
+
+  public Set<String> getTypes() {
+    return types;
   }
 }
