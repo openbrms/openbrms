@@ -1,9 +1,9 @@
 <a name="readme-top"></a>
-# Business rules engine
+# Business Rules Management System
 
 ## Overview
 
-Rules Engine is a Business Rules Management System (BRMS) solution for abstracting business logic (rules, policies) from the system.
+Business Rules Management System (BRMS) solution for abstracting business logic (rules, policies) from the system.
 It provides a simple way to separate your rules and your application core logic,
 thus ensuring that any changes to the rules will not affect the main system.
 
