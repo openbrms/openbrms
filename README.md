@@ -1,6 +1,8 @@
 <a name="readme-top"></a>
 # Business Rules Management System
 
+[![CI](https://github.com/alexk-dev/brms/actions/workflows/maven.yml/badge.svg)](https://github.com/alexk-dev/brms/actions/workflows/maven.yml)
+
 ## Overview
 
 Business Rules Management System (BRMS) solution for abstracting business logic (rules, policies) from the system.
