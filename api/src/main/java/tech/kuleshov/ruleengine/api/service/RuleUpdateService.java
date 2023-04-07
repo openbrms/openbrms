@@ -8,25 +8,24 @@ import tech.kuleshov.ruleengine.base.RuleDefinition;
 @Service
 public class RuleUpdateService {
 
-  private final RuleRepository ruleRepository;
+    private final RuleRepository ruleRepository;
 
-  public RuleUpdateService(RuleRepository ruleRepository) {
-    this.ruleRepository = ruleRepository;
-  }
+    public RuleUpdateService(RuleRepository ruleRepository) {
+        this.ruleRepository = ruleRepository;
+    }
 
-  public void updateRule(RuleDefinition rd) {
-    // todo: checks
+    public void updateRule(RuleDefinition rd) {
+        // todo: checks
 
-    Rule rule =
-        Rule.builder()
-            .id(rd.getId())
-            .workflowId(rd.getWorkflowId())
-            .when(rd.getWhen())
-            .then(rd.getThen())
-            .required(rd.isRequired())
-            .variables(rd.getVariables())
-            .build();
+        Rule rule = Rule.builder()
+                .id(rd.getId())
+                .workflowId(rd.getWorkflowId())
+                .when(rd.getWhen())
+                .then(rd.getThen())
+                .required(rd.isRequired())
+                .variables(rd.getVariables())
+                .build();
 
-    ruleRepository.save(rule);
-  }
+        ruleRepository.save(rule);
+    }
 }

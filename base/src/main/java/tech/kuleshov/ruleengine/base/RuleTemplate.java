@@ -6,11 +6,11 @@ import java.util.Set;
 
 public interface RuleTemplate {
 
-  Set<String> getDependencies();
+    Set<String> getDependencies();
 
-  Map<String, VariableDefinition> getVariables();
+    Map<String, VariableDefinition> getVariables();
 
-  boolean when(Map<String, Value> input);
+    boolean when(Map<String, Value> input);
 
-  Value then();
+    Value then();
 }
