@@ -103,7 +103,7 @@
                         <image>openjdk:11</image>
                     </from>
                     <to>
-                        <image>openbrms/openbrms:${project.version}</image>
+                        <image>openbrms/api:${project.version}</image>
                     </to>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <container>
