@@ -103,7 +103,7 @@
                         <image>openjdk:11</image>
                     </from>
                     <to>
-                        <image>ghcr.io/alexk-dev/brms/api:${project.version}</image>
+                        <image>openbrms/openbrms:${project.version}</image>
                     </to>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <container>
