@@ -30,6 +30,36 @@ cd api
 mvn spring-boot:run
 ```
 
+or you can try with docker-compose
+```shell
+version: "3.9"
+
+services:
+
+  pgsql:
+    image: postgres:15-alpine
+    container_name: pgsql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=sa
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=brms
+
+  api:
+    image: openbrms/api:1.0.0-SNAPSHOT
+    environment:
+      DB_HOST: 'pgsql'
+      DB_PORT: 5432
+      DB_NAME: 'brms'
+      DB_USER: 'sa'
+      DB_PASSWORD: 'password'
+      DB_SCHEMA: 'brms'
+      SPRING_PROFILES_ACTIVE: 'docker'
+    ports:
+      - "8085:8085"
+```
+
 Finally open examples/ folder and try my python-notebooks
 
 
