@@ -10,23 +10,23 @@ import tech.kuleshov.ruleengine.domain.EvalResultDto;
 @RequestMapping("/eval")
 public class EvaluateController {
 
-  private final RuleEngineService ruleEngineService;
+    private final RuleEngineService ruleEngineService;
 
-  public EvaluateController(RuleEngineService ruleEngineService) {
-    this.ruleEngineService = ruleEngineService;
-  }
+    public EvaluateController(RuleEngineService ruleEngineService) {
+        this.ruleEngineService = ruleEngineService;
+    }
 
-  @PostMapping("/{workflowId}/{ruleId}")
-  public EvalResultDto eval(
-      @PathVariable String workflowId,
-      @PathVariable String ruleId,
-      @RequestBody Map<String, Object> params) {
-    return ruleEngineService.eval(workflowId, ruleId, params);
-  }
+    @PostMapping("/{workflowId}/{ruleId}")
+    public EvalResultDto eval(
+            @PathVariable String workflowId,
+            @PathVariable String ruleId,
+            @RequestBody Map<String, Object> params) {
+        return ruleEngineService.eval(workflowId, ruleId, params);
+    }
 
-  @PostMapping("/{workflowId}")
-  public List<EvalResultDto> eval(
-      @PathVariable String workflowId, @RequestBody Map<String, Object> params) {
-    return ruleEngineService.eval(workflowId, params);
-  }
+    @PostMapping("/{workflowId}")
+    public List<EvalResultDto> eval(
+            @PathVariable String workflowId, @RequestBody Map<String, Object> params) {
+        return ruleEngineService.eval(workflowId, params);
+    }
 }

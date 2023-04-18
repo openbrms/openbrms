@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EvalResultDto {
 
-  private String ruleId;
-  private VariableType type;
-  private Object value;
-  private boolean fits;
+    private String ruleId;
+    private VariableType type;
+    private Object value;
+    private boolean fits;
 }

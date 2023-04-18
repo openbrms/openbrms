@@ -8,48 +8,49 @@ import tech.kuleshov.ruleengine.base.exception.MissingVariablesException;
 
 public class RuleExecutor {
 
-  public Optional<Value> execute(RuleDefinition rd, Map<String, Value> input) {
-    List<String> missingVariables = checkPrerequisites(rd, input);
-    if (missingVariables.size() > 0) {
-      if (rd.isRequired()) {
-        throw new MissingVariablesException(missingVariables);
-      } else {
-        return Optional.empty();
-      }
+    public Optional<Value> execute(RuleDefinition rd, Map<String, Value> input) {
+        List<String> missingVariables = checkPrerequisites(rd, input);
+        if (missingVariables.size() > 0) {
+            if (rd.isRequired()) {
+                throw new MissingVariablesException(missingVariables);
+            } else {
+                return Optional.empty();
+            }
+        }
+        String whenSource = prepare(rd.getWhen(), input);
+        ParseResult r = TweakFlow.parse(whenSource);
+        if (r.isError()) {
+            throw new RuleParseException(rd.getWorkflowId(), rd.getId());
+        }
+        Value value = TweakFlow.evaluate(whenSource);
+        boolean isApplicable = value.bool();
+        if (!isApplicable)
+            return Optional.empty();
+
+        String thenSource = prepare(rd.getThen(), input);
+        Value result = TweakFlow.evaluate(thenSource);
+        return Optional.of(result);
     }
-    String whenSource = prepare(rd.getWhen(), input);
-    ParseResult r = TweakFlow.parse(whenSource);
-    if (r.isError()) {
-      throw new RuleParseException(rd.getWorkflowId(), rd.getId());
+
+    private List<String> checkPrerequisites(RuleDefinition rd, Map<String, Value> input) {
+        Set<String> rdKeySet = rd.getVariables().keySet();
+        Set<String> inputKeySet = input.keySet();
+        List<String> result = new ArrayList<>(rdKeySet);
+        result.removeAll(inputKeySet);
+        return result;
     }
-    Value value = TweakFlow.evaluate(whenSource);
-    boolean isApplicable = value.bool();
-    if (!isApplicable) return Optional.empty();
 
-    String thenSource = prepare(rd.getThen(), input);
-    Value result = TweakFlow.evaluate(thenSource);
-    return Optional.of(result);
-  }
+    private String prepare(String when, Map<String, Value> input) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("let {\n");
+        for (Map.Entry<String, Value> entry : input.entrySet()) {
+            String k = entry.getKey();
+            Value v = entry.getValue();
+            sb.append(String.format("%s: %s;\n", k, v));
+        }
+        sb.append("}\n");
+        sb.append(when);
 
-  private List<String> checkPrerequisites(RuleDefinition rd, Map<String, Value> input) {
-    Set<String> rdKeySet = rd.getVariables().keySet();
-    Set<String> inputKeySet = input.keySet();
-    List<String> result = new ArrayList<>(rdKeySet);
-    result.removeAll(inputKeySet);
-    return result;
-  }
-
-  private String prepare(String when, Map<String, Value> input) {
-    StringBuilder sb = new StringBuilder();
-    sb.append("let {\n");
-    for (Map.Entry<String, Value> entry : input.entrySet()) {
-      String k = entry.getKey();
-      Value v = entry.getValue();
-      sb.append(String.format("%s: %s;\n", k, v));
+        return sb.toString();
     }
-    sb.append("}\n");
-    sb.append(when);
-
-    return sb.toString();
-  }
 }

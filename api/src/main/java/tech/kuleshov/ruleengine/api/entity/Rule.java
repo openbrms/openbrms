@@ -22,21 +22,23 @@ import tech.kuleshov.ruleengine.base.VariableDefinition;
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Rule {
 
-  @Id private String id;
+    @Id
+    private String id;
 
-  @Column(name = "workflow_id")
-  private String workflowId;
+    @Column(name = "workflow_id")
+    private String workflowId;
 
-  @Type(type = "jsonb")
-  @Column(columnDefinition = "jsonb")
-  @Builder.Default
-  private Map<String, VariableDefinition> variables = new HashMap<>();
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    @Builder.Default
+    private Map<String, VariableDefinition> variables = new HashMap<>();
 
-  @Column(name = "rule_when", columnDefinition = "text")
-  private String when;
+    @Column(name = "rule_when", columnDefinition = "text")
+    private String when;
 
-  @Column(name = "rule_then", columnDefinition = "text")
-  private String then;
+    @Column(name = "rule_then", columnDefinition = "text")
+    private String then;
 
-  @Builder.Default private boolean required = true;
+    @Builder.Default
+    private boolean required = true;
 }

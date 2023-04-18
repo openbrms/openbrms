@@ -58,6 +58,28 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>net.revelc.code.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+				<version>2.22.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>format</goal>
+							<goal>validate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<lineEnding>LF</lineEnding>
+					<configFile>${project.basedir}/../misc/formatter_eclipse.xml</configFile>
+					<directories>
+						<directory>${project.basedir}/src/main/java</directory>
+						<directory>${project.basedir}/src/test/java</directory>
+					</directories>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

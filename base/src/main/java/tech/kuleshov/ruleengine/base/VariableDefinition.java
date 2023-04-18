@@ -13,9 +13,9 @@ import tech.kuleshov.ruleengine.domain.VariableType;
 @AllArgsConstructor
 public class VariableDefinition {
 
-  @JsonProperty(value = "rule_id")
-  private String ruleId;
+    @JsonProperty(value = "rule_id")
+    private String ruleId;
 
-  private String var;
-  private VariableType type;
+    private String var;
+    private VariableType type;
 }

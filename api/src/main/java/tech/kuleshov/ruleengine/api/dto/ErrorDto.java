@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorDto {
 
-  private String message;
-  private ErrorCode errorCode;
-  private String field;
+    private String message;
+    private ErrorCode errorCode;
+    private String field;
 }

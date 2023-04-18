@@ -1,13 +1,13 @@
 package tech.kuleshov.ruleengine.domain;
 
 public class UnknownVariableTypeException extends RuntimeException {
-  private final String type;
+    private final String type;
 
-  public UnknownVariableTypeException(String type) {
-    this.type = type;
-  }
+    public UnknownVariableTypeException(String type) {
+        this.type = type;
+    }
 
-  public String getType() {
-    return type;
-  }
+    public String getType() {
+        return type;
+    }
 }

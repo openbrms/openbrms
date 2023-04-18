@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WorkflowResponseDto {
-  private String id;
-  private String name;
+    private String id;
+    private String name;
 }

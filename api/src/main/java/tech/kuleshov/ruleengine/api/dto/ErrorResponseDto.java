@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponseDto {
 
-  @Builder.Default private String id = UUID.randomUUID().toString();
-  private List<ErrorDto> errors;
+    @Builder.Default
+    private String id = UUID.randomUUID().toString();
+    private List<ErrorDto> errors;
 }
