@@ -11,38 +11,40 @@ import tech.kuleshov.ruleengine.base.RuleDefinition;
 @Service
 public class RuleRetrieveService {
 
-    private final RuleRepository ruleRepository;
+  private final RuleRepository ruleRepository;
 
-    public RuleRetrieveService(RuleRepository ruleRepository) {
-        this.ruleRepository = ruleRepository;
-    }
+  public RuleRetrieveService(RuleRepository ruleRepository) {
+    this.ruleRepository = ruleRepository;
+  }
 
-    public List<RuleDefinition> listRulesByWorkflowId(String workflowId) {
-        List<Rule> rule = ruleRepository.findAllByWorkflowId(workflowId);
-        return rule.stream()
-                .map(
-                        m -> RuleDefinition.builder()
-                                .id(m.getId())
-                                .workflowId(m.getWorkflowId())
-                                .when(m.getWhen())
-                                .then(m.getThen())
-                                .variables(m.getVariables())
-                                .required(m.isRequired())
-                                .build())
-                .collect(Collectors.toList());
-    }
+  public List<RuleDefinition> listRulesByWorkflowId(String workflowId) {
+    List<Rule> rule = ruleRepository.findAllByWorkflowId(workflowId);
+    return rule.stream()
+        .map(
+            m ->
+                RuleDefinition.builder()
+                    .id(m.getId())
+                    .workflowId(m.getWorkflowId())
+                    .when(m.getWhen())
+                    .then(m.getThen())
+                    .variables(m.getVariables())
+                    .required(m.isRequired())
+                    .build())
+        .collect(Collectors.toList());
+  }
 
-    public Optional<RuleDefinition> findRuleDefinitionById(String workflowId, String ruleId) {
-        return ruleRepository
-                .findByWorkflowIdAndId(workflowId, ruleId)
-                .map(
-                        m -> RuleDefinition.builder()
-                                .id(m.getId())
-                                .workflowId(m.getWorkflowId())
-                                .when(m.getWhen())
-                                .then(m.getThen())
-                                .variables(m.getVariables())
-                                .required(m.isRequired())
-                                .build());
-    }
+  public Optional<RuleDefinition> findRuleDefinitionById(String workflowId, String ruleId) {
+    return ruleRepository
+        .findByWorkflowIdAndId(workflowId, ruleId)
+        .map(
+            m ->
+                RuleDefinition.builder()
+                    .id(m.getId())
+                    .workflowId(m.getWorkflowId())
+                    .when(m.getWhen())
+                    .then(m.getThen())
+                    .variables(m.getVariables())
+                    .required(m.isRequired())
+                    .build());
+  }
 }

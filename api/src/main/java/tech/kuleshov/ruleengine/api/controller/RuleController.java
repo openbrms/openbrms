@@ -4,6 +4,7 @@ import java.util.List;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import tech.kuleshov.ruleengine.api.exception.NotFoundException;
 import tech.kuleshov.ruleengine.api.service.RuleRetrieveService;
 import tech.kuleshov.ruleengine.api.service.RuleUpdateService;
 import tech.kuleshov.ruleengine.base.RuleDefinition;
@@ -13,28 +14,30 @@ import tech.kuleshov.ruleengine.base.RuleDefinition;
 @RequestMapping(value = "/rule")
 public class RuleController {
 
-    private final RuleUpdateService ruleUpdateService;
-    private final RuleRetrieveService ruleRetrieveService;
+  private final RuleUpdateService ruleUpdateService;
+  private final RuleRetrieveService ruleRetrieveService;
 
-    public RuleController(
-            RuleUpdateService ruleUpdateService, RuleRetrieveService ruleRetrieveService) {
-        this.ruleUpdateService = ruleUpdateService;
-        this.ruleRetrieveService = ruleRetrieveService;
-    }
+  public RuleController(
+      RuleUpdateService ruleUpdateService, RuleRetrieveService ruleRetrieveService) {
+    this.ruleUpdateService = ruleUpdateService;
+    this.ruleRetrieveService = ruleRetrieveService;
+  }
 
-    @PostMapping("/{workflowId}")
-    public void submitRule(@Valid @RequestBody RuleDefinition rule) {
-        log.info("rule updated: {}/{}", rule.getWorkflowId(), rule.getId());
-        ruleUpdateService.updateRule(rule);
-    }
+  @PostMapping("/{workflowId}")
+  public void submitRule(@Valid @RequestBody RuleDefinition rule) {
+    log.info("rule updated: {}/{}", rule.getWorkflowId(), rule.getId());
+    ruleUpdateService.updateRule(rule);
+  }
 
-    @GetMapping("/{workflowId}")
-    public List<RuleDefinition> listRoles(@PathVariable String workflowId) {
-        return ruleRetrieveService.listRulesByWorkflowId(workflowId);
-    }
+  @GetMapping("/{workflowId}")
+  public List<RuleDefinition> listRoles(@PathVariable String workflowId) {
+    return ruleRetrieveService.listRulesByWorkflowId(workflowId);
+  }
 
-    @GetMapping("/{workflowId}/{ruleId}")
-    public RuleDefinition getRole(@PathVariable String workflowId, @PathVariable String ruleId) {
-        return ruleRetrieveService.findRuleDefinitionById(workflowId, ruleId).orElseThrow();
-    }
+  @GetMapping("/{workflowId}/{ruleId}")
+  public RuleDefinition getRole(@PathVariable String workflowId, @PathVariable String ruleId) {
+    return ruleRetrieveService
+        .findRuleDefinitionById(workflowId, ruleId)
+        .orElseThrow(NotFoundException::new);
+  }
 }

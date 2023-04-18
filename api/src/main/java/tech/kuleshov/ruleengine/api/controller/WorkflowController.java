@@ -10,29 +10,29 @@ import tech.kuleshov.ruleengine.domain.PageView;
 @RequestMapping("/workflow")
 public class WorkflowController {
 
-    private final WorkflowService workflowService;
+  private final WorkflowService workflowService;
 
-    public WorkflowController(WorkflowService workflowService) {
-        this.workflowService = workflowService;
-    }
+  public WorkflowController(WorkflowService workflowService) {
+    this.workflowService = workflowService;
+  }
 
-    @PostMapping("/{workflowId}")
-    public void submitWorkflow(@PathVariable String workflowId, @RequestBody WorkflowRequestDto dto) {
-        workflowService.submitWorkflow(workflowId, dto);
-    }
+  @PostMapping("/{workflowId}")
+  public void submitWorkflow(@PathVariable String workflowId, @RequestBody WorkflowRequestDto dto) {
+    workflowService.submitWorkflow(workflowId, dto);
+  }
 
-    @GetMapping("/{workflowId}")
-    public WorkflowResponseDto getWorkflow(@PathVariable String workflowId) {
-        return workflowService.getWorkflow(workflowId);
-    }
+  @GetMapping("/{workflowId}")
+  public WorkflowResponseDto getWorkflow(@PathVariable String workflowId) {
+    return workflowService.getWorkflow(workflowId);
+  }
 
-    @DeleteMapping("/{workflowId}")
-    public void deleteWorkflow(@PathVariable String workflowId) {
-        workflowService.deleteWorkflow(workflowId);
-    }
+  @DeleteMapping("/{workflowId}")
+  public void deleteWorkflow(@PathVariable String workflowId) {
+    workflowService.deleteWorkflow(workflowId);
+  }
 
-    @GetMapping
-    public PageView<WorkflowResponseDto> listWorkflows() {
-        return workflowService.listWorkflows();
-    }
+  @GetMapping
+  public PageView<WorkflowResponseDto> listWorkflows() {
+    return workflowService.listWorkflows();
+  }
 }

@@ -25,7 +25,7 @@ public enum VariableType {
         }
       }
     }
-    throw new RuntimeException("UNKNOWN_VAR_TYPE: " + value);
+    throw new UnknownVariableTypeException(value);
   }
 
   @JsonCreator

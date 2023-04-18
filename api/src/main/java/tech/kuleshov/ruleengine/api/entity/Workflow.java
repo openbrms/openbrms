@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Workflow {
-    @Id
-    private String id;
-    private String name;
+  @Id private String id;
+  private String name;
 }
