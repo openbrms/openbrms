@@ -1,25 +1,24 @@
 package tech.kuleshov.ruleengine.api.entity;
 
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import tech.kuleshov.ruleengine.base.VariableDefinition;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+@Entity(name = "rule")
 public class Rule {
 
     @Id
@@ -28,7 +27,7 @@ public class Rule {
     @Column(name = "workflow_id")
     private String workflowId;
 
-    @Type(type = "jsonb")
+    @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
     @Builder.Default
     private Map<String, VariableDefinition> variables = new HashMap<>();

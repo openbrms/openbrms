@@ -3,12 +3,13 @@ package tech.kuleshov.ruleengine.api.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Service;
+
+import jakarta.inject.Singleton;
 import tech.kuleshov.ruleengine.api.dao.RuleRepository;
 import tech.kuleshov.ruleengine.api.entity.Rule;
 import tech.kuleshov.ruleengine.base.RuleDefinition;
 
-@Service
+@Singleton
 public class RuleRetrieveService {
 
     private final RuleRepository ruleRepository;
