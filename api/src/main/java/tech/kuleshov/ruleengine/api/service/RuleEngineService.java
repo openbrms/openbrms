@@ -7,9 +7,10 @@ import com.twineworks.tweakflow.lang.values.Value;
 import com.twineworks.tweakflow.lang.values.Values;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import io.quarkus.runtime.util.StringUtil;
+import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
-import org.springframework.stereotype.Service;
 import tech.kuleshov.ruleengine.api.exception.NotFoundException;
 import tech.kuleshov.ruleengine.base.RuleDefinition;
 import tech.kuleshov.ruleengine.base.RuleExecutor;
@@ -18,7 +19,7 @@ import tech.kuleshov.ruleengine.domain.EvalResultDto;
 import tech.kuleshov.ruleengine.domain.VariableType;
 
 @Slf4j
-@Service
+@Singleton
 public class RuleEngineService {
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -112,7 +113,7 @@ public class RuleEngineService {
         for (Map.Entry<String, VariableDefinition> entry : rd.getVariables().entrySet()) {
             String key = entry.getKey();
             VariableDefinition vd = entry.getValue();
-            if (!Strings.isEmpty(vd.getRuleId())) {
+            if (!StringUtil.isNullOrEmpty(vd.getRuleId())) {
                 if (vd.getVar() == null) {
                     EvalResultDto r = eval(rd.getWorkflowId(), vd.getRuleId(), params);
                     if (r.isFits()) {

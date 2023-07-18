@@ -1,11 +1,11 @@
 package tech.kuleshov.ruleengine.api.service;
 
-import org.springframework.stereotype.Service;
+import jakarta.inject.Singleton;
 import tech.kuleshov.ruleengine.api.dao.RuleRepository;
 import tech.kuleshov.ruleengine.api.entity.Rule;
 import tech.kuleshov.ruleengine.base.RuleDefinition;
 
-@Service
+@Singleton
 public class RuleUpdateService {
 
     private final RuleRepository ruleRepository;

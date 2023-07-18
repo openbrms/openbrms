@@ -27,7 +27,7 @@ mvn clean install
 Then run the api service
 ```shell
 cd api
-mvn spring-boot:run
+./mvnw clean compile quarkus:dev
 ```
 
 or you can try with docker-compose
@@ -57,7 +57,7 @@ services:
       DB_SCHEMA: 'brms'
       SPRING_PROFILES_ACTIVE: 'docker'
     ports:
-      - "8085:8085"
+      - "8080:8080"
 ```
 
 Finally open examples/ folder and try my python-notebooks

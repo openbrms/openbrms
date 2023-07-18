@@ -2,7 +2,8 @@ package tech.kuleshov.ruleengine.api.service;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import org.springframework.stereotype.Service;
+
+import jakarta.inject.Singleton;
 import tech.kuleshov.ruleengine.api.dao.WorkflowRepository;
 import tech.kuleshov.ruleengine.api.dto.WorkflowRequestDto;
 import tech.kuleshov.ruleengine.api.dto.WorkflowResponseDto;
@@ -10,7 +11,7 @@ import tech.kuleshov.ruleengine.api.entity.Workflow;
 import tech.kuleshov.ruleengine.api.exception.NotFoundException;
 import tech.kuleshov.ruleengine.domain.PageView;
 
-@Service
+@Singleton
 public class WorkflowService {
     private final WorkflowRepository workflowRepository;
 
