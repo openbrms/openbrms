@@ -3,6 +3,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/alexk-dev/brms/actions/workflows/maven.yml/badge.svg)](https://github.com/alexk-dev/brms/actions/workflows/maven.yml)
+[![Known Vulnerabilities](https://snyk.io/test/github/{username}/{repo}/badge.svg)]
 
 ## Overview
 
