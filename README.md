@@ -5,6 +5,7 @@
 [![CI](https://github.com/alexk-dev/brms/actions/workflows/maven.yml/badge.svg)](https://github.com/alexk-dev/brms/actions/workflows/maven.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/openbrms/openbrms/badge.svg)]
 
+
 ## Overview
 
 Business Rules Management System (BRMS) solution for abstracting business logic (rules, policies) from the system.
