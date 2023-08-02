@@ -10,6 +10,7 @@ import io.openbrms.api.dao.WorkflowRepository;
 import io.openbrms.api.dto.WorkflowRequestDto;
 import io.openbrms.api.dto.WorkflowResponseDto;
 import io.openbrms.domain.PageView;
+import jakarta.transaction.Transactional;
 
 @Singleton
 public class WorkflowService {
@@ -32,9 +33,11 @@ public class WorkflowService {
                 .build();
     }
 
+    @Transactional
     public void submitWorkflow(String workflowId, WorkflowRequestDto dto) {
-        Workflow workflow = Workflow.builder().id(workflowId).name(dto.getName()).build();
-        workflowRepository.save(workflow);
+        Workflow workflow = workflowRepository.findById(workflowId).orElse(Workflow.builder().id(workflowId).build());
+        workflow.setName(dto.getName());
+        workflowRepository.persist(workflow);
     }
 
     public WorkflowResponseDto getWorkflow(String workflowId) {
@@ -44,6 +47,7 @@ public class WorkflowService {
                 .orElseThrow(NotFoundException::new);
     }
 
+    @Transactional
     public void deleteWorkflow(String workflowId) {
         workflowRepository.deleteById(workflowId);
     }

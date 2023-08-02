@@ -4,6 +4,7 @@ import jakarta.inject.Singleton;
 import io.openbrms.api.dao.RuleRepository;
 import io.openbrms.api.entity.Rule;
 import io.openbrms.base.RuleDefinition;
+import jakarta.transaction.Transactional;
 
 @Singleton
 public class RuleUpdateService {
@@ -14,18 +15,26 @@ public class RuleUpdateService {
         this.ruleRepository = ruleRepository;
     }
 
+    @Transactional
     public void updateRule(RuleDefinition rd) {
         // todo: checks
 
-        Rule rule = Rule.builder()
+        Rule rule = ruleRepository.findByWorkflowIdAndId(rd.getWorkflowId(), rd.getId()).orElse(Rule.builder()
                 .id(rd.getId())
                 .workflowId(rd.getWorkflowId())
-                .when(rd.getWhen())
-                .then(rd.getThen())
-                .required(rd.isRequired())
-                .variables(rd.getVariables())
-                .build();
+                .build());
 
-        ruleRepository.save(rule);
+        rule.setWhen(rd.getWhen());
+        rule.setThen(rd.getThen());
+        rule.setRequired(rd.isRequired());
+        rule.setVariables(rd.getVariables());
+
+        ruleRepository.persist(rule);
+
+    }
+
+    @Transactional
+    public void deleteRule(String workflowId, String ruleId) {
+        ruleRepository.deleteByWorkflowIdAndId(workflowId, ruleId);
     }
 }
