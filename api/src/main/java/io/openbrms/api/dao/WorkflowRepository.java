@@ -1,10 +1,19 @@
 package io.openbrms.api.dao;
 
-import java.util.*;
-
 import io.openbrms.api.entity.Workflow;
-import org.springframework.data.repository.CrudRepository;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
+import jakarta.enterprise.context.ApplicationScoped;
 
-public interface WorkflowRepository extends CrudRepository<Workflow, String> {
-    List<Workflow> findAll();
+import java.util.Optional;
+
+@ApplicationScoped
+public class WorkflowRepository implements PanacheRepository<Workflow> {
+
+    public Optional<Workflow> findById(String workflowId) {
+        return find("id", workflowId).firstResultOptional();
+    }
+
+    public void deleteById(String workflowId) {
+        delete("id", workflowId);
+    }
 }
