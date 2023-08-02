@@ -133,7 +133,7 @@ public class RuleEngineService {
         }
     }
 
-    private Map<String, Value> prepareInput(Map<String, Object> params, RuleDefinition rd) {
+    protected Map<String, Value> prepareInput(Map<String, Object> params, RuleDefinition rd) {
         Map<String, Value> input = new HashMap<>();
 
         for (Map.Entry<String, Object> entry : params.entrySet()) {
@@ -160,7 +160,7 @@ public class RuleEngineService {
         return input;
     }
 
-    private Value prepareListValue(Collection<Object> collection, VariableDefinition vard) {
+    protected Value prepareListValue(Collection<Object> collection, VariableDefinition vard) {
         List<Value> values = new ArrayList<>();
 
         for (Object o : collection) {
