@@ -38,7 +38,7 @@ jobs:
     - name: Generate JaCoCo Badge
       uses: cicirello/jacoco-badge-generator@v2
       with:
-        jacoco-csv-file: target/site/jacoco/jacoco.csv
+        jacoco-csv-file: api/target/site/jacoco/jacoco.csv
         badges-directory: .github/badges
         generate-coverage-badge: true
         coverage-badge-filename: jacoco.svg
