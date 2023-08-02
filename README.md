@@ -5,7 +5,6 @@
 [![CI](https://github.com/openbrms/openbrms/actions/workflows/maven.yml/badge.svg)](https://github.com/openbrms/openbrms/actions/workflows/maven.yml)
 ![Known Vulnerabilities](https://snyk.io/test/github/openbrms/openbrms/badge.svg)
 ![Coverage](.github/badges/jacoco.svg)
-![Branches](.github/badges/branches.svg)
 
 ## Overview
 
