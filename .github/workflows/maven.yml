@@ -67,7 +67,8 @@ jobs:
         fail-on-branches-decrease: false
 
     - name: Commit the badge (if it changed)
-      github_token: ${{ secrets.TOKEN }}
+      with:
+        github_token: ${{ secrets.TOKEN }}
       run: |
         if [[ `git status --porcelain` ]]; then
           git config --global user.name 'Alex Kuleshov'
