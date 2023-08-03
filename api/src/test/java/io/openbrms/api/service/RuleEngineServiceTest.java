@@ -2,7 +2,6 @@ package io.openbrms.api.service;
 
 import com.twineworks.tweakflow.lang.values.Value;
 import io.openbrms.base.VariableDefinition;
-import jakarta.inject.Inject;
 import org.apache.http.util.Asserts;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
