@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_shield)
 [![CI](https://github.com/openbrms/openbrms/actions/workflows/maven.yml/badge.svg)](https://github.com/openbrms/openbrms/actions/workflows/maven.yml)
+![CodeQL](https://github.com/openbrms/openbrms/workflows/CodeQL/badge.svg)
 ![Known Vulnerabilities](https://snyk.io/test/github/openbrms/openbrms/badge.svg)
 ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
