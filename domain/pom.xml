@@ -16,6 +16,13 @@
 		<slf4j.version>2.0.7</slf4j.version>
 		<lombok.version>1.18.28</lombok.version>
 	</properties>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 	<dependencies>
 		<dependency>
 			<groupId>com.twineworks</groupId>

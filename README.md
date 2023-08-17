@@ -2,11 +2,13 @@
 # Open BRMS (Business Rules Management System)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_shield)
 [![CI](https://github.com/openbrms/openbrms/actions/workflows/maven.yml/badge.svg)](https://github.com/openbrms/openbrms/actions/workflows/maven.yml)
+![CodeQL](https://github.com/openbrms/openbrms/workflows/CodeQL/badge.svg)
 ![Known Vulnerabilities](https://snyk.io/test/github/openbrms/openbrms/badge.svg)
 ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_shield)
+[![codebeat badge](https://codebeat.co/badges/be5b5327-77e3-45b9-b02d-a073599ffc9d)](https://codebeat.co/projects/github-com-openbrms-openbrms-main)
 
 ## Overview
 
