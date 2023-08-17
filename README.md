@@ -8,6 +8,7 @@
 ![Known Vulnerabilities](https://snyk.io/test/github/openbrms/openbrms/badge.svg)
 ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
+[![codebeat badge](https://codebeat.co/badges/be5b5327-77e3-45b9-b02d-a073599ffc9d)](https://codebeat.co/projects/github-com-openbrms-openbrms-main)
 
 ## Overview
 
