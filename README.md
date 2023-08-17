@@ -2,7 +2,7 @@
 # Open BRMS (Business Rules Management System)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_shield)
 [![CI](https://github.com/openbrms/openbrms/actions/workflows/maven.yml/badge.svg)](https://github.com/openbrms/openbrms/actions/workflows/maven.yml)
 ![CodeQL](https://github.com/openbrms/openbrms/workflows/CodeQL/badge.svg)
 ![Known Vulnerabilities](https://snyk.io/test/github/openbrms/openbrms/badge.svg)
@@ -93,3 +93,6 @@ Distributed under the business friendly [MIT license](https://opensource.org/lic
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_large)
