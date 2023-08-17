@@ -6,6 +6,7 @@
 ![Known Vulnerabilities](https://snyk.io/test/github/openbrms/openbrms/badge.svg)
 ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_shield)
 
 ## Overview
 
@@ -90,3 +91,6 @@ Distributed under the business friendly [MIT license](https://opensource.org/lic
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopenbrms%2Fopenbrms?ref=badge_large)
