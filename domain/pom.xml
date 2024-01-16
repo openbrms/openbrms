@@ -13,7 +13,7 @@
 		<maven.compiler.target>11</maven.compiler.target>
 		<tweakflow.version>1.4.3</tweakflow.version>
 		<jackson.version>2.16.1</jackson.version>
-		<slf4j.version>2.0.10</slf4j.version>
+		<slf4j.version>2.0.11</slf4j.version>
 		<lombok.version>1.18.30</lombok.version>
 	</properties>
 	<licenses>
