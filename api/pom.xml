@@ -9,7 +9,7 @@
   <description>api</description>
   <properties>
     <compiler-plugin.version>3.13.0</compiler-plugin.version>
-    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
@@ -161,7 +161,7 @@
       <plugin>
         <groupId>net.revelc.code.formatter</groupId>
         <artifactId>formatter-maven-plugin</artifactId>
-        <version>2.24.1</version>
+        <version>2.25.0</version>
         <executions>
           <execution>
             <goals>
@@ -186,7 +186,7 @@
         <version>3.4.3</version>
         <configuration>
           <from>
-            <image>openjdk:11</image>
+            <image>openjdk:17</image>
           </from>
           <to>
             <image>openbrms/api:${project.version}</image>
